@@ -10,7 +10,9 @@
    <!-- swiper js cdn link -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- custom css link -->
+    
    <link rel="stylesheet" href="css/rooms.css">
+   
 </head>
 <body>
 
@@ -32,6 +34,38 @@
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
+
+
+      <div class="basket">
+         <div class="basket-head">
+             <div class="basket-count">
+                 <span style="font-weight: bold;">Cart</span>
+                 <span id="count-basket-cart">0</span>
+             </div>
+             <div class="basket-icon">
+                 <i class="fa-solid fa-x"></i>
+             </div>
+         </div>
+         <div class="basket-all row" >
+         </div>
+         <div class="basket-none">
+             <p class="icon-b">
+               <i class="fa-solid fa-cart-shopping"></i>
+             </p >
+             <p class="b-write">No products in the cart.</p>
+            
+         </div>
+         <div class="Total-price d-none">
+             <div>
+                 <p>Total</p>
+                 <p>$ <span id="Total">0</span></p>
+             </div>
+             <p>Taxes and shipping calculated at checkout</p>
+             <a class="Cart" href="">View Cart</a>
+             
+         </div>
+     </div>
+      
 
    </header>
 
@@ -182,7 +216,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-1.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -202,7 +238,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-2.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -222,7 +260,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-3.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -242,7 +282,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-4.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -262,7 +304,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-5.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -282,7 +326,9 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-6.jpg" alt="">
-                  <a href="#" class="fas fa-shopping-cart"></a>
+                  <div class="Add-cart">
+                     <a href="#" class="fas fa-shopping-cart"></a>
+                  </div>   
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -740,6 +786,7 @@
    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
    <script src="rooms.js"></script>
+   <script src="javaScript/basket.js"></script>
 
 </body>
 </html>

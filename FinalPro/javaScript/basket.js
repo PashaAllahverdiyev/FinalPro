@@ -1,46 +1,184 @@
-// Örnek sepet verisi
-const cartItems = [
-    { name: "Deluxe Oda", price: 200 },
-    { name: "Lüks Süit", price: 350 },
-    { name: "Standart Oda", price: 150 },
-];
-
-// Sepet içeriğini listeleme
-const cart = document.getElementById("cart");
-const totalPriceElement = document.getElementById("total-price");
-
-function displayCartItems() {
-    cart.innerHTML = ""; // Önceki içeriği temizle
-
-    let totalPrice = 0;
-
-    cartItems.forEach(item => {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-
-        cartItem.innerHTML = `
-            <p>${item.name}</p>
-            <p>$${item.price}</p>
-        `;
-
-        cart.appendChild(cartItem);
-        totalPrice += item.price;
-    });
-
-    totalPriceElement.textContent = "$" + totalPrice.toFixed(2);
-}
-
-displayCartItems();
-
-// Ödeme yapma işlevi
-const checkoutButton = document.getElementById("checkout");
-
-checkoutButton.addEventListener("click", () => {
-    if (cartItems.length === 0) {
-        alert("Sepetiniz boş. Ödeme yapabilmek için ürün ekleyin.");
-    } else {
-        alert("Ödeme işlemi tamamlandı. Teşekkür ederiz!");
-        cartItems.length = 0; // Sepeti sıfırla
-        displayCartItems();
+if(localStorage.getItem('basket') === null){
+    localStorage.setItem('basket',JSON.stringify([]))
+  }
+  
+  let Add_cart = document.querySelectorAll('.Add-cart')
+  let cart_position = document.querySelector('.cart-position')
+  for(let add_cart of Add_cart){
+    add_cart.onclick = () =>{
+      let src = add_cart.parentElement.parentElement.querySelector('.Product-image img').getAttribute('src');
+      let text = add_cart.parentElement.parentElement.parentElement.children[1].children[1].children[1].innerHTML
+      let price = add_cart.parentElement.parentElement.querySelector('.Product-about').children[3].children[0].innerHTML
+      let baskets = JSON.parse(localStorage.getItem('basket'))
+      let exist = baskets.find(x=> x.sekil === src)
+      
+          if(exist === undefined){
+            baskets.push({
+                sekil: src,
+                yazi: text,
+                price: price,
+                Count: 1
+            })
+          }else{
+            exist.Count += 1
+          }
+          cart_position.style.opacity = '1'
+          cart_position.style.left = '20px'
+          setTimeout(() => {
+            cart_position.style.opacity = '0'
+            cart_position.style.left = '-200px'
+            cart_position.style.transition='.6s'
+          }, 2000);
+          localStorage.setItem('basket',JSON.stringify(baskets))
+          showb()
+          showbasket()  
+          getbasket()
+          calc()
+     }
+  }
+  
+  
+  function showb() {
+    let basketb  = JSON.parse(localStorage.getItem('basket'))
+    document.getElementById('count-basket').innerHTML = basketb.length
+    document.getElementById('count-basket-cart').innerHTML = basketb.length
+  }
+  
+  function getbasket() {
+    let items = JSON.parse(localStorage.getItem('basket'))
+    let  n = ''
+    for(let item of items){
+        n+=`
+        <div class="tab-basket-all col-lg-12 col-12">
+                    <div class="tab-basket">
+                         <div class="basket-photo">
+                            <a href="#"> <img src="${item.image}" alt=""></a>
+                         </div>
+                         <div class="basket-content">
+                            <p >${item.yazi}</p>
+                            <span class="price1" style="color: #Ff6f2e; font-weight: 700;">${item.price}</span>
+                            <span style="color: #Ff6f2e; font-weight: 700;">*</span>
+                            <span class="price2" style="color: #Ff6f2e; font-weight: 700;">${item.Count}</span>
+                            <div class="wrapper">
+                              <span class="minus">-</span>
+                              <span class="num">${item.Count}</span>
+                              <span class="plus">+</span>
+                            </div>
+                            <p class="content-icon">remove</p>
+                        </div>
+                    </div>
+                </div>
+        `
+    } 
+    document.querySelector('.basket-all').innerHTML = n
+    let dlt = document.querySelectorAll('.content-icon')
+    const pluss = document.querySelectorAll('.plus'),
+    minuss = document.querySelectorAll('.minus');
+  
+    let T = 1
+    for(let plus of pluss){
+      if(T<15){
+        plus.onclick =function(){
+          let num = this.previousElementSibling
+          let num2 = this.parentElement.previousElementSibling
+          let num3 = this.parentElement.parentElement.children[1].innerText
+          let priceValues = parseFloat(num3.replace('$', '')); 
+          let b = num2.innerText
+          let a = num.innerText
+          if(a<15){
+            a++;
+            b++;
+            num.innerText = a
+            num2.innerText = b
+          }
+          let Totals = b*priceValues   
+          document.getElementById('Total').innerHTML = Totals.toFixed(2)
+          calc()
+          T++;
+        }
+      }
     }
-});
+    for(let minus of minuss){
+      minus.onclick =function(){
+        let num = this.parentElement.children[1]
+        let num2 = this.parentElement.previousElementSibling
+        let num3 = this.parentElement.parentElement.children[1].innerText
+        let priceValues = parseFloat(num3.replace('$', '')); 
+        let b = num2.innerText
+        let a = num.innerText
+        if(a>1){
+          a--;
+          b--;
+          num.innerText = a
+          num2.innerText = b
+        }
+        let Total = b*priceValues
+        document.getElementById('Total').innerHTML = Total.toFixed(2)
+        calc()
+      }
+    }
+    
+   
+    for(let del of dlt){
+    del.onclick = () => {
+      let src = del.parentElement.previousElementSibling.children[0].children[0].src
+      let kartfilter = items.filter(z => z.sekil != src)
+      localStorage.setItem('basket',JSON.stringify(kartfilter))
+      getbasket()
+      showb()
+      calc()
+      showbasket()
+    }
+    }
+  }
+  
+  showb()
+  getbasket()
+  calc()
+  function calc(){
+    var priceElements = document.querySelectorAll('.price1');
+    
+    Total= 0
+    
+    for (var i = 0; i < priceElements.length; i++) {
+      let count = priceElements[i].parentElement.children[3].innerHTML
+      var priceText = priceElements[i].innerHTML; 
+      var priceValue = parseFloat(priceText.replace('$', '')); 
+      let Totals = priceValue*count
+      Total += Totals
+    }
+    document.getElementById('Total').innerHTML = Total.toFixed(2)
+  
+  }
+  
+  function showbasket() {
+    let karts = JSON.parse(localStorage.getItem('basket'))
+    if(karts.length === 0){
+        document.querySelector('.basket-none').classList.remove('d-none')
+        document.querySelector('.Total-price').classList.add('d-none')
+     }
+     else{
+       document.querySelector('.basket-none').classList.add('d-none')
+       document.querySelector('.Total-price').classList.remove('d-none')
+     }
+  }
+  showbasket()
+  
+  
+  let basketaa = document.querySelector('.basket')
+  let basket_click = document.querySelector('#basket-click')
+  let _icon = document.querySelector('.basket-icon')
+  
+  
+  basket_click.onclick=()=>{
+    basketaa.style.display = 'block'
+  }
+  
+  _icon.onclick =() =>{
+    if(basketaa.style.display === 'block'){
+      basketaa.style.display = 'none'
+    }
+  }
+  
+  
+  

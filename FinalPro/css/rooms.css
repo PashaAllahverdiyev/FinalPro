@@ -122,6 +122,183 @@ section{
     color: var(--primary);
 }
 
+
+header .basket {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fff;
+    width: 26%;
+    height: 100vh;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    right: 0;
+  }
+  header .basket .basket-head {
+    margin: 30px 40px 0 40px;
+    text-align: center;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee2e6;
+  }
+  header .basket .basket-head .basket-icon i {
+    font-size: 20px;
+  }
+  header .basket .basket-head .basket-count span {
+    color: #000;
+  }
+  header .basket .basket-head .basket-count #count-basket-cart {
+    margin-left: 5px;
+    padding: 4px 8px;
+    border-radius: 100%;
+    font-size: 12px;
+    background-color: #000;
+    color: #fff;
+  }
+  header .basket .basket-none {
+    text-align: center;
+    margin-top: -300px;
+  }
+  header .basket .basket-none .icon-b i {
+    padding: 30px;
+    border-radius: 100%;
+    background-color: #f5f5f5;
+    font-size: 20px;
+  }
+  header .basket .basket-none .b-write {
+    color: #666;
+    margin-bottom: 35px;
+  }
+  header .basket .basket-none a {
+    position: relative;
+    z-index: 0;
+    color: #000;
+    font-size: 16px;
+    border: 2px solid black;
+    padding: 12px 30px;
+    transition: 0.6s;
+  }
+  header .basket .basket-none a:hover {
+    color: #fff;
+    border: 2px solid #ff6f2e;
+    transition: 0.1s;
+  }
+  header .basket .basket-none a:hover::before {
+    transform: scaleY(1);
+    transition: 0.6s;
+  }
+  header .basket .basket-all {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 60vh;
+  }
+  header .basket .basket-all .tab-basket {
+    padding: 40px;
+    display: flex;
+  }
+  header .basket .basket-all .tab-basket .basket-photo {
+    width: 30%;
+  }
+  header .basket .basket-all .tab-basket .basket-photo a img {
+    width: 100%;
+  }
+  header .basket .basket-all .tab-basket .basket-content {
+    width: 75%;
+    margin-left: 10px;
+  }
+  header .basket .basket-all .tab-basket .basket-content .content-icon {
+    margin-top: -20px;
+    margin-left: 260px;
+    text-decoration: underline;
+  }
+  header .basket .basket-all .tab-basket .basket-content .wrapper {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+                user-select: none;
+    width: 20%;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    margin-top: 18px;
+    justify-content: center;
+    border-radius: 5px;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  header .basket .basket-all .tab-basket .basket-content .wrapper span {
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  header .basket .basket-all .tab-basket .basket-content .wrapper .num {
+    font-size: 15px;
+    pointer-events: none;
+  }
+  header .basket .Total-price {
+    border-top: 1px solid #666;
+    margin: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #dee2e6;
+  }
+  header .basket .Total-price div {
+    display: flex;
+    justify-content: space-between;
+  }
+  header .basket .Total-price div P {
+    color: #000;
+    font-weight: bold;
+  }
+  header .basket .Total-price div P span {
+    margin-right: 20px;
+  }
+  header .basket .Total-price p {
+    color: #666;
+    font-weight: 400;
+  }
+  header .basket .Total-price .Cart {
+    position: relative;
+    margin-top: 30px;
+    display: inline-block;
+    padding: 12px 65px;
+    color: #000;
+    font-weight: bold;
+    font-size: 13px;
+    border: 2px solid #000;
+    transition: 0.2s;
+  }
+  header .basket .Total-price .Cart:hover {
+    color: #fff;
+    border: 2px solid #ff6f2e;
+    transition: 0.6s;
+  }
+  header .basket .Total-price .Cart:hover::before {
+    transform: scaleY(1);
+    transition: 0.6s;
+  }
+  header .basket .Total-price .Check {
+    position: relative;
+    z-index: 0;
+    margin-top: 30px;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 14px 65px;
+    color: #fff;
+    background-color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+  }
+  header .basket .Total-price .Check:hover {
+    transition: 0.6s;
+  }
+  header .basket .Total-price .Check:hover::before {
+    transform: scaleY(1);
+    transition: 0.6s;
+  }
+
 /* end */
 
 /* home */
